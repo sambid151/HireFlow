@@ -185,24 +185,24 @@ export const DashboardView: React.FC = () => {
 
   return (
     <div id="dashboard-view" className="space-y-6 max-w-7xl mx-auto pb-16">
-      {/* Hero Welcome Banner - Clean & Focused */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 p-6 sm:p-7 rounded-3xl bg-linear-to-r from-emerald-900 via-slate-900 to-slate-950 text-white shadow-md relative overflow-hidden">
-        <div className="absolute right-0 top-0 bottom-0 w-1/3 bg-radial from-emerald-500/10 to-transparent pointer-events-none" />
-
-        <div className="relative z-10 space-y-1.5 max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-500/20 text-emerald-300 text-xs font-semibold backdrop-blur-xs border border-emerald-400/20">
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+      {/* Hero Welcome Banner - Polished Light Default with Emerald Accents */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-5 p-6 sm:p-7 rounded-3xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 text-slate-900 dark:text-white shadow-xs relative overflow-hidden">
+        <div className="relative z-10 space-y-2 max-w-2xl">
+          <div className="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300 text-xs font-semibold border border-emerald-200/80 dark:border-emerald-800/80">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
             <span>Private by default · Stored securely on your device</span>
           </div>
 
-          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-white leading-tight">
-            <div>{greeting.greetingLine}</div>
-            <div className="text-xl sm:text-2xl font-bold text-slate-100 mt-1">
+          <div className="space-y-0.5">
+            <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-tight">
+              {greeting.greetingLine}
+            </h1>
+            <p className="text-base sm:text-lg font-semibold text-slate-700 dark:text-slate-200">
               {greeting.subheadingLine}
-            </div>
-          </h1>
+            </p>
+          </div>
 
-          <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+          <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm leading-relaxed">
             Keep your applications, resumes, interviews and career momentum in one private workspace.
           </p>
         </div>
@@ -214,7 +214,7 @@ export const DashboardView: React.FC = () => {
             onClick={() => openAddOpportunity('wishlist')}
             icon={Plus}
             size="lg"
-            variant="primary"
+            variant="emerald"
           >
             Add Opportunity
           </Button>

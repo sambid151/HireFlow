@@ -2,6 +2,7 @@ import React from 'react';
 import { X, Briefcase } from 'lucide-react';
 import { Job, JobStatus } from '../../types';
 import { AddJobForm } from './AddJobForm';
+import { useHireFlow } from '../../context/HireFlowContext';
 
 interface JobDrawerProps {
   isOpen: boolean;
@@ -18,6 +19,8 @@ export const JobDrawer: React.FC<JobDrawerProps> = ({
   quickAddMode = false,
   onClose,
 }) => {
+  const { setActiveTab, setSelectedJob } = useHireFlow();
+
   if (!isOpen) return null;
 
   return (
@@ -62,6 +65,10 @@ export const JobDrawer: React.FC<JobDrawerProps> = ({
             jobToEdit={jobToEdit}
             initialStatus={initialStatus}
             quickAddMode={quickAddMode}
+            onSuccess={(savedJob) => {
+              setActiveTab('applications');
+              setSelectedJob(savedJob);
+            }}
             onClose={onClose}
             isModalOrDrawer={true}
           />
