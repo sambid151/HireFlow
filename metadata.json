@@ -1,0 +1,6 @@
+{
+  "name": "HireFlow",
+  "description": "A private, local-first Job Application OS to track opportunities, manage resumes, follow up with recruiters, monitor interviews, and maintain job-search momentum.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
