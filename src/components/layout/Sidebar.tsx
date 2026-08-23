@@ -50,7 +50,7 @@ export const Sidebar: React.FC = () => {
   return (
     <aside
       id="main-sidebar"
-      className="hidden md:flex flex-col w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 shrink-0 h-screen sticky top-0 select-none z-30 transition-colors duration-200"
+      className="hidden md:flex flex-col fixed inset-y-0 left-0 w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 h-screen select-none z-30 transition-colors duration-200"
     >
       {/* Brand Header */}
       <div className="p-5 pb-4 border-b border-slate-100 dark:border-slate-800/80 flex items-center justify-between">

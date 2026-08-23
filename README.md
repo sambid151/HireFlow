@@ -18,4 +18,3 @@ View your app in AI Studio: https://ai.studio/apps/807ea8bf-8741-44cb-ab05-59a1b
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
-# HireFlow

@@ -4,28 +4,19 @@ import { useState, useEffect } from 'react';
  * Calculates the time-of-day greeting based on browser local time.
  *
  * Local Time Ranges:
- * 00:00–04:59 → "Good night"
- * 05:00–11:59 → "Good morning"
- * 12:00–16:59 → "Good afternoon"
- * 17:00–20:59 → "Good evening"
- * 21:00–23:59 → "Good night"
+ * before 12:00 -> Good morning
+ * 12:00-16:59 -> Good afternoon
+ * 17:00 onward -> Good evening
  */
 export function getTimeOfDayGreeting(date: Date = new Date()): string {
   const hours = date.getHours();
-  // 05:00 - 11:59
-  if (hours >= 5 && hours < 12) {
+  if (hours < 12) {
     return 'Good morning';
   }
-  // 12:00 - 16:59
-  if (hours >= 12 && hours < 17) {
+  if (hours < 17) {
     return 'Good afternoon';
   }
-  // 17:00 - 20:59
-  if (hours >= 17 && hours < 21) {
-    return 'Good evening';
-  }
-  // 21:00 - 23:59 and 00:00 - 04:59
-  return 'Good night';
+  return 'Good evening';
 }
 
 export interface FormattedGreeting {
@@ -34,8 +25,8 @@ export interface FormattedGreeting {
   displayName: string | null;
   /**
    * Line 1 of greeting:
-   * If name: "Good afternoon, {Name}."
-   * Fallback: "Good afternoon 👋"
+   * If name: "Good evening, Sambit 👋"
+   * Fallback: "Good evening 👋"
    */
   greetingLine: string;
   /**
@@ -63,14 +54,14 @@ export function formatGreeting(timeGreeting: string, rawName?: string | null): F
   if (hasValidName) {
     // Prevent double punctuation if user name ends with a period
     const cleanName = trimmedName.endsWith('.') ? trimmedName.slice(0, -1).trim() : trimmedName;
-    const greetingLine = `${timeGreeting}, ${cleanName}.`;
+    const greetingLine = `${timeGreeting}, ${cleanName} 👋`;
     return {
       timeGreeting,
       hasName: true,
       displayName: cleanName,
       greetingLine,
       subheadingLine,
-      fullAccessibleText: `${greetingLine} ${subheadingLine}`,
+      fullAccessibleText: `${timeGreeting}, ${cleanName}. ${subheadingLine}`,
     };
   }
 
