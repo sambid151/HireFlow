@@ -195,7 +195,24 @@ export const SettingsView: React.FC = () => {
                   <button
                     key={t.id}
                     type="button"
-                    onClick={() => setThemeMode(t.id as any)}
+                    onClick={async () => {
+                      const newMode = t.id as 'light' | 'dark' | 'system';
+                      setThemeMode(newMode);
+                      const isDark =
+                        newMode === 'dark' ||
+                        (newMode === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+                      if (isDark) {
+                        document.documentElement.classList.add('dark');
+                        document.body.classList.add('dark');
+                      } else {
+                        document.documentElement.classList.remove('dark');
+                        document.body.classList.remove('dark');
+                      }
+                      await updateSettings({
+                        themeMode: newMode,
+                        theme: isDark ? 'dark' : 'light',
+                      });
+                    }}
                     className={`py-2 px-2 rounded-xl text-xs font-bold flex items-center justify-center gap-1.5 border transition cursor-pointer ${
                       themeMode === t.id
                         ? 'bg-emerald-50 dark:bg-emerald-950/60 border-emerald-500 text-emerald-800 dark:text-emerald-300'

@@ -261,11 +261,25 @@ export const HireFlowProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 
   // Actions
   const toggleTheme = useCallback(async () => {
-    const nextTheme = settings.theme === 'light' ? 'dark' : 'light';
+    const isCurrentlyDark =
+      document.documentElement.classList.contains('dark') ||
+      settings.themeMode === 'dark' ||
+      settings.theme === 'dark';
+    const nextTheme: 'light' | 'dark' = isCurrentlyDark ? 'light' : 'dark';
+
+    // Apply class immediately for zero-lag feedback
+    if (nextTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+      document.body.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.body.classList.remove('dark');
+    }
+
     const updated = await db.saveSettings({ theme: nextTheme, themeMode: nextTheme });
     setSettings(updated);
     showToast(`Switched to ${nextTheme} mode`, 'info');
-  }, [settings.theme, showToast]);
+  }, [settings.theme, settings.themeMode, showToast]);
 
   const addJob = useCallback(
     async (jobData: Omit<Job, 'id' | 'createdAt' | 'updatedAt' | 'order'>) => {
