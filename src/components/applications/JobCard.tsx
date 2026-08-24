@@ -56,14 +56,13 @@ export const JobCard: React.FC<JobCardProps> = ({ job, onOpenDetails, onEdit, on
   const followUp = getFollowUpStatus(job);
   const daysText = job.dateApplied ? formatDaysAgoText(job.dateApplied) : null;
 
-  // Status border / accent
-  const statusBorderMap: Record<JobStatus, string> = {
-    wishlist: 'border-l-slate-400 dark:border-l-slate-600',
-    applied: 'border-l-blue-500',
-    'follow-up': 'border-l-amber-500',
-    interview: 'border-l-purple-500',
-    offer: 'border-l-emerald-500',
-    rejected: 'border-l-rose-500',
+  const statusDotMap: Record<JobStatus, string> = {
+    wishlist: 'bg-slate-400',
+    applied: 'bg-blue-500',
+    'follow-up': 'bg-amber-500',
+    interview: 'bg-purple-500',
+    offer: 'bg-emerald-500',
+    rejected: 'bg-rose-500',
   };
 
   const companyInitials = job.companyName
@@ -79,9 +78,7 @@ export const JobCard: React.FC<JobCardProps> = ({ job, onOpenDetails, onEdit, on
       style={style}
       id={`job-card-${job.id}`}
       onClick={() => onOpenDetails(job)}
-      className={`group relative p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 border-l-4 ${
-        statusBorderMap[job.status]
-      } shadow-2xs hover:shadow-md hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-150 cursor-pointer select-none ${
+      className={`group relative p-3.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-2xs hover:shadow-xs hover:border-slate-300 dark:hover:border-slate-700 transition-all duration-150 cursor-pointer select-none ${
         isDragging ? 'opacity-40 ring-2 ring-emerald-500 shadow-xl' : ''
       }`}
     >

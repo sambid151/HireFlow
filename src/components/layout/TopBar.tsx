@@ -7,6 +7,8 @@ import {
   AlertCircle,
   Clock,
   CheckCircle2,
+  Sun,
+  Moon,
 } from 'lucide-react';
 import { useHireFlow } from '../../context/HireFlowContext';
 
@@ -21,6 +23,8 @@ export const TopBar: React.FC = () => {
     clearWorkspace,
     settings,
     setActiveTab,
+    theme,
+    toggleTheme,
   } = useHireFlow();
 
   const [isAttentionOpen, setIsAttentionOpen] = useState(false);
@@ -173,6 +177,21 @@ export const TopBar: React.FC = () => {
             </div>
           )}
         </div>
+
+        {/* Quick Theme Toggle */}
+        <button
+          id="topbar-theme-toggle"
+          onClick={toggleTheme}
+          className="p-2 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 border border-slate-200/60 dark:border-slate-800 transition cursor-pointer"
+          title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} mode`}
+          aria-label="Toggle Theme"
+        >
+          {theme === 'dark' ? (
+            <Sun className="w-4 h-4 text-amber-400" />
+          ) : (
+            <Moon className="w-4 h-4 text-slate-600" />
+          )}
+        </button>
 
         {/* User Initials Avatar */}
         <div

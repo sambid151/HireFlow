@@ -36,17 +36,34 @@ const MainLayout: React.FC = () => {
   // Apply dark mode theme class based on settings
   useEffect(() => {
     const root = document.documentElement;
-    const isDark =
-      settings.themeMode === 'dark' ||
-      (settings.themeMode === 'system' &&
-        window.matchMedia('(prefers-color-scheme: dark)').matches);
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
-    if (isDark) {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-  }, [settings.themeMode]);
+    const applyTheme = () => {
+      const isDark =
+        settings.themeMode === 'dark' ||
+        (settings.themeMode === 'system' && mediaQuery.matches) ||
+        (!settings.themeMode && settings.theme === 'dark');
+
+      if (isDark) {
+        root.classList.add('dark');
+        document.body.classList.add('dark');
+      } else {
+        root.classList.remove('dark');
+        document.body.classList.remove('dark');
+      }
+    };
+
+    applyTheme();
+
+    const handleMediaChange = () => {
+      if (settings.themeMode === 'system') {
+        applyTheme();
+      }
+    };
+
+    mediaQuery.addEventListener('change', handleMediaChange);
+    return () => mediaQuery.removeEventListener('change', handleMediaChange);
+  }, [settings.themeMode, settings.theme]);
 
   if (!isLoaded) {
     return (

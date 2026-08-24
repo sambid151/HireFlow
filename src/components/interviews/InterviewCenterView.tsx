@@ -138,7 +138,7 @@ export const InterviewCenterView: React.FC = () => {
             <h1 className="text-2xl font-black text-slate-900 dark:text-white tracking-tight">
               Interview Center
             </h1>
-            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-purple-100 dark:bg-purple-950/60 text-purple-800 dark:text-purple-300">
+            <span className="text-xs font-bold px-2.5 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300">
               {scheduledCount} upcoming
             </span>
           </div>
@@ -152,7 +152,7 @@ export const InterviewCenterView: React.FC = () => {
           onClick={openAddModal}
           icon={Plus}
           size="md"
-          variant="purple"
+          variant="emerald"
           className="self-start sm:self-auto"
         >
           Schedule Interview
@@ -173,7 +173,7 @@ export const InterviewCenterView: React.FC = () => {
               onClick={() => setFilterResult(tab.id)}
               className={`px-3 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer ${
                 filterResult === tab.id
-                  ? 'bg-purple-100 dark:bg-purple-950/60 text-purple-800 dark:text-purple-300'
+                  ? 'bg-emerald-50 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300'
                   : 'text-slate-500 hover:text-slate-800 dark:hover:text-slate-200'
               }`}
             >
